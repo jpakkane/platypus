@@ -22,7 +22,10 @@
  */
 
 #include <platypus.h>
+#include <random>
 
 int platypus_hello() {
-    return 0;
+    static std::mt19937 gen(42);
+    std::uniform_int_distribution<> dis(0, 99);
+    return dis(gen);
 }
