@@ -4,5 +4,9 @@ project('platypus', 'cpp',
 
 subdir('src')
 
-gtk_dep = dependency('gtk+-3.0')
+gtk_dep = dependency('gtk+-3.0', required : false)
 subdir('gtk', if_found : gtk_dep)
+
+if host_machine.system() == 'darwin'
+  subdir('macOS')
+endif
