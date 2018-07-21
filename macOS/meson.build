@@ -23,3 +23,5 @@ custom_target('main_nib',
 install_data('Info.plist',
   install_dir : 'Contents'
   )
+
+meson.add_install_script('otooler.py')
