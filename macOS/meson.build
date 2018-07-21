@@ -6,7 +6,7 @@ executable('platypus',
   'main.m', 'AppDelegate.m',
   install : true,
   objc_args : ['-fobjc-arc'],
-  dependencies : cocoa_dep,
+  dependencies : [plat_dep, cocoa_dep],
 )
 
 ibtool = find_program('ibtool')

@@ -4,6 +4,8 @@
 
 #import "AppDelegate.h"
 
+#include<platypus.h>
+
 @interface AppDelegate ()
 
 @property (weak) IBOutlet NSTextField *statusText;
@@ -12,7 +14,7 @@
 
 @implementation AppDelegate
 - (IBAction)buttonClicked:(id)sender {
-    int result = 42;
+    int result = platypus_hello();
     NSString *TempString = [NSString stringWithFormat:@"Library returned value %d", result];
     [_statusText setStringValue:TempString];
 }
