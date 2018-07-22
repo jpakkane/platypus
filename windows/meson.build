@@ -6,4 +6,7 @@ executable('platypus',
   extra_files : 'platypus.rc', # HACK
   install : true,
   gui_app : true,
+  dependencies : plat_dep,
   )
+
+install_data('License.rtf', install_dir : get_option('prefix'))

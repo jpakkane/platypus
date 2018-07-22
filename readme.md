@@ -9,8 +9,14 @@ make the app behave natively are added for each platform.
 
 The goal is to create at least the following:
 
- - A GTK+ Flatpak app (not done yet)
- - A WIN32 application with an msi installer (not done yet)
- - An Objective C macOS application in an app bundle (not done yet)
+ - A GTK+ Unix app
+ - A WIN32 application
+ - An Objective C macOS app bundle
  - An Android application (not done yet)
- - An iOS application (not done yet)
+ - A Swift iOS application (not done yet)
+
+In addition to a plain application also build installers for:
+
+ - Flatpak (not done yet)
+ - MSI (not done yet)
+ - macOS .dmg (not done yet)

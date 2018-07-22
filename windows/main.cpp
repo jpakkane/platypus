@@ -25,6 +25,7 @@
 #include<string>
 
 #include"res_ids.h"
+#include<platypus.h>
 
 HWND hwndlabel, hwndbutton;
 
@@ -115,7 +116,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 
     case WM_COMMAND: {
         if (LOWORD(wParam) == ID_CALL_LIB) {
-            const int result = 42;
+            const int result = platypus_hello();
             std::string msg("Library returned value: ");
             msg += std::to_string(result);
             msg += ".";
