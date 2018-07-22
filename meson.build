@@ -10,3 +10,7 @@ subdir('gtk', if_found : gtk_dep)
 if host_machine.system() == 'darwin'
   subdir('macOS')
 endif
+
+if host_machine.system() == 'windows'
+  subdir('windows')
+endif
