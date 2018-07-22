@@ -22,19 +22,22 @@
  */
 
 #include<windows.h>
-#include<commctrl.h>
-#include<cstdio>
+#include<string>
+
+#define ID_CALL_LIB 55
+
+HWND hwndlabel, hwndbutton;
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, PSTR, int iCmdShow) {
     static TCHAR name[] = TEXT("Platypus");
     RECT rcClient;  // dimensions of client area
-    HWND hwnd, hwndtv;
+    HWND hwnd;
     MSG msg;
     WNDCLASS wndclass;
 
-    InitCommonControls();
+//    InitCommonControls();
 
     wndclass.style = CS_HREDRAW | CS_VREDRAW;
     wndclass.lpfnWndProc = WndProc;
@@ -57,31 +60,43 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, PSTR, int iCmdShow) {
                         WS_OVERLAPPEDWINDOW,
                         CW_USEDEFAULT,
                         CW_USEDEFAULT,
-                        CW_USEDEFAULT,
-                        CW_USEDEFAULT,
+                        640,
+                        240,
                         NULL,
                         NULL,
                         hInstance,
                         NULL);
 
     GetClientRect(hwnd, &rcClient);
-    /*
-    hwndtv = CreateWindowEx(0,
-                            WC_TREEVIEW,
-                            TEXT("Tree view"),
-                            WS_CHILD,
-                            0,
-                            0,
-                            rcClient.right,
-                            rcClient.bottom,
-                            hwnd,
-                            NULL,
-                            hInstance,
-                            NULL);
 
-    ShowWindow(hwndtv, iCmdShow);
-    UpdateWindow(hwndtv);
-    */
+    hwndlabel = CreateWindow("Static",
+        "Library has not been called yet",
+        WS_CHILD | SS_SUNKEN | SS_CENTER | SS_CENTERIMAGE,
+        0,
+        20,
+        640,
+        50,
+        hwnd,
+        NULL,
+        hInstance,
+        NULL);
+
+    hwndbutton = CreateWindow("Button",
+                              "Call library",
+                              WS_CHILD,
+                              10,
+                              100,
+                              600,
+                              90,
+                              hwnd,
+                              (HMENU)ID_CALL_LIB,
+                              hInstance,
+                              NULL);
+
+    ShowWindow(hwndbutton, iCmdShow);
+    UpdateWindow(hwndbutton);
+    ShowWindow(hwndlabel, iCmdShow);
+    UpdateWindow(hwndlabel);
     ShowWindow(hwnd, iCmdShow);
     UpdateWindow(hwnd);
     while(GetMessage(&msg, NULL, 0, 0)) {
@@ -91,12 +106,22 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, PSTR, int iCmdShow) {
     return msg.wParam;
 }
 
-LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam) {
-  switch(message) {
-  case WM_DESTROY:
-    PostQuitMessage(0);
-    return 0;
-  }
+LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
+    switch (message) {
+    case WM_DESTROY: {
+        PostQuitMessage(0);
+        return 0;
+    }
 
-  return DefWindowProc(hwnd, message, wparam, lparam);
+    case WM_COMMAND: {
+        if (LOWORD(wParam) == ID_CALL_LIB) {
+            const int result = 42;
+            std::string msg("Library returned value: ");
+            msg += std::to_string(result);
+            msg += ".";
+            SetWindowText(hwndlabel, msg.c_str());
+        }
+    }
+    }
+  return DefWindowProc(hwnd, message, wParam, lParam);
 }
