@@ -1,0 +1,8 @@
+#include"res_ids.h"
+
+mainmenu MENU {
+    POPUP "&Platypus"
+    {
+        MENUITEM "&Quit", MENU_QUIT
+    }
+}

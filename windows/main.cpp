@@ -24,7 +24,7 @@
 #include<windows.h>
 #include<string>
 
-#define ID_CALL_LIB 55
+#include"res_ids.h"
 
 HWND hwndlabel, hwndbutton;
 
@@ -57,13 +57,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, PSTR, int iCmdShow) {
 
     hwnd = CreateWindow(name,
                         TEXT("Platypus"),
-                        WS_OVERLAPPEDWINDOW,
+                        WS_OVERLAPPEDWINDOW ^ WS_THICKFRAME,
                         CW_USEDEFAULT,
                         CW_USEDEFAULT,
                         640,
                         240,
                         NULL,
-                        NULL,
+                        LoadMenu(hInstance, "mainmenu"),
                         hInstance,
                         NULL);
 
@@ -87,7 +87,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, PSTR, int iCmdShow) {
                               10,
                               100,
                               600,
-                              90,
+                              70,
                               hwnd,
                               (HMENU)ID_CALL_LIB,
                               hInstance,
@@ -120,6 +120,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
             msg += std::to_string(result);
             msg += ".";
             SetWindowText(hwndlabel, msg.c_str());
+        }
+        if (LOWORD(wParam) == MENU_QUIT) {
+            PostQuitMessage(0);
         }
     }
     }
