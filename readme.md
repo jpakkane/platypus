@@ -18,5 +18,5 @@ The goal is to create at least the following:
 In addition to a plain application also build installers for:
 
  - Flatpak (not done yet)
- - MSI (not done yet)
+ - Windows MSI
  - macOS .dmg (not done yet)

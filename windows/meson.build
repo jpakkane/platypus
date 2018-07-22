@@ -9,4 +9,3 @@ executable('platypus',
   dependencies : plat_dep,
   )
 
-install_data('License.rtf', install_dir : get_option('prefix'))

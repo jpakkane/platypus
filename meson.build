@@ -13,4 +13,9 @@ endif
 
 if host_machine.system() == 'windows'
   subdir('windows')
+  c = configuration_data()
+  c.set('VERSION', meson.project_version())
+  configure_file(input : 'windows/platypus.json.in',
+    output : 'platypus.json',
+    configuration : c)
 endif

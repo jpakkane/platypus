@@ -1,0 +1,20 @@
+{
+    "upgrade_guid": "FBD2F49A-A2CC-4B15-9CE1-33CC729ACE2E",
+    "version": "@VERSION@",
+    "product_name": "Platypus",
+    "manufacturer": "Jussi Pakkanen",
+    "name": "Platypus",
+    "name_base": "platypus",
+    "comments": "Platypus demo application demonstrating Meson packaging",
+    "installdir": "platypus",
+    "license_file": "../windows/License.rtf",
+    "parts": [
+        {
+         "id": "MainProgram",
+         "title": "Platypus",
+         "description": "Platypus demo application",
+         "absent": "disallow",
+         "staged_dir": "staging"
+        }
+    ]
+}
