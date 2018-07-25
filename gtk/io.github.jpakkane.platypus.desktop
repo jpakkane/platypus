@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Platypus
+Exec=platypus
+Type=Application
+Icon=io.github.jpakkane.platypus
+Categories=Education

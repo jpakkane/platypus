@@ -42,8 +42,8 @@ void call_callback(GtkButton *b, gpointer data) {
 }
 
 void build_gui(struct App *a) {
-    //    a->builder = gtk_builder_new_from_file(GLADE_FILE);
-    a->builder = gtk_builder_new_from_file("../gtk/platygui.glade");
+    a->builder = gtk_builder_new_from_file(GLADE_FILE);
+    //a->builder = gtk_builder_new_from_file("../gtk/platygui.glade");
     a->main_window = GTK_WINDOW(gtk_builder_get_object(a->builder, "main_window"));
     a->call_button = GTK_BUTTON(gtk_builder_get_object(a->builder, "call_button"));
     a->quit_button = GTK_BUTTON(gtk_builder_get_object(a->builder, "quit_button"));

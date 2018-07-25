@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>io.github.jpakkane.platypus</id>
+  <name>Platypus</name>
+  <summary>A sample cross platform application</summary>
+  <url type="homepage">https://github.com/jpakkane/platypus</url>
+  <project_license>MIT</project_license>
+  <metadata_license>MIT</metadata_license>
+  <releases>
+    <release version="0.1" date="2018-07-25" />
+  </releases>
+  <developer_name>Jussi Pakkanen</developer_name>
+</component>
