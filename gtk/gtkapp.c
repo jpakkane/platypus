@@ -42,12 +42,24 @@ void call_callback(GtkButton *b, gpointer data) {
 }
 
 void build_gui(struct App *a) {
+    GError *error = NULL;
+    GdkPixbuf *icon = NULL;
     a->builder = gtk_builder_new_from_file(GLADE_FILE);
     //a->builder = gtk_builder_new_from_file("../gtk/platygui.glade");
     a->main_window = GTK_WINDOW(gtk_builder_get_object(a->builder, "main_window"));
     a->call_button = GTK_BUTTON(gtk_builder_get_object(a->builder, "call_button"));
     a->quit_button = GTK_BUTTON(gtk_builder_get_object(a->builder, "quit_button"));
     a->status_label = GTK_LABEL(gtk_builder_get_object(a->builder, "status_label"));
+
+    icon = gdk_pixbuf_new_from_file(ICON_FILE, &error);
+    if(icon) {
+        gtk_window_set_icon(a->main_window, icon);
+        g_object_unref(icon);
+    } else {
+        printf("Could not open image %s.\n", error->message);
+        g_error_free(error);
+        error = NULL;
+    }
 
     g_signal_connect(GTK_WIDGET(a->main_window), "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(GTK_WIDGET(a->quit_button), "clicked", G_CALLBACK(gtk_main_quit), NULL);
