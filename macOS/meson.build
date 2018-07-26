@@ -20,8 +20,7 @@ custom_target('main_nib',
   install_dir : 'Contents/Resources/Base.lproj',
 )
 
-install_data('Info.plist',
-  install_dir : 'Contents'
-  )
+install_data('Info.plist', install_dir : 'Contents')
+install_data('platypus.icns', install_dir : 'Contents/Resources')
 
 meson.add_install_script('otooler.py')
