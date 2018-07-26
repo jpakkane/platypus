@@ -6,3 +6,5 @@ mainmenu MENU {
         MENUITEM "&Quit", MENU_QUIT
     }
 }
+
+ID_ICON ICON "platypus.ico"
