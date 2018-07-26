@@ -8,6 +8,7 @@
     "comments": "Platypus demo application demonstrating Meson packaging",
     "installdir": "platypus",
     "license_file": "../windows/License.rtf",
+    "addremove_icon": "../windows/platypus.ico",
     "parts": [
         {
          "id": "MainProgram",

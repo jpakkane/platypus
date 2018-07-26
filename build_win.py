@@ -33,7 +33,7 @@ def autodetect_meson():
         x = shutil.which(i)
         if x is not None:
             return [x]
-        sys.exit('Could not autodetect Meson.')
+        sys.exit('Could not autodetect Meson. Specify it manually with a command line argument.')
 
 def delete_junk(staging_dir):
     # In the real world you'd move the pdb files

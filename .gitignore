@@ -2,6 +2,7 @@
 /build
 /msicreator
 /.flatpak-builder
+/build-release
 .DS_Store
 .project
 .cproject
