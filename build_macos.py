@@ -35,9 +35,7 @@ def autodetect_meson():
             return [x]
         sys.exit('Could not autodetect Meson. Specify it manually with a command line argument.')
 
-def do_it(meson_command):
-    builddir = 'build-macos'
-    staging_dir = os.path.join(os.getcwd(), builddir, 'platypus.app')
+def build(meson_command, builddir, staging_dir):
     if os.path.exists(builddir):
         shutil.rmtree(builddir)
     # NOTE: the end result is not stripped.
@@ -53,7 +51,46 @@ def do_it(meson_command):
     subprocess.check_call(['ninja', '-C', builddir, 'test'])
     subprocess.check_call(['ninja', '-C', builddir, 'install'])
 
-    print('The app bundle can be found in the build dir.')
+def create_dmg(builddir, staging_dir):
+    abs_build = os.path.join(os.getcwd(), builddir)
+    template = 'macOS/template.dmg.gz'
+    raw_dmg = os.path.join(builddir, 'temporary.dmg')
+    mountpoint = os.path.join(abs_build, 'mnttmp')
+    appdir = os.path.join(mountpoint, 'platypus.app')
+    final_dmg = os.path.join(builddir, 'platypus.dmg')
+    subprocess.check_call('gunzip < %s > %s' % (template, raw_dmg),
+                          shell=True)
+    subprocess.check_call(['hdiutil',
+                           'attach',
+                           raw_dmg,
+                           '-noautoopen',
+                           '-quiet',
+                           '-mountpoint',
+                           mountpoint,
+                           ])
+    os.rmdir(appdir)
+    shutil.move(staging_dir, mountpoint)
+    subprocess.check_call(['hdiutil', 'detach', mountpoint])
+    subprocess.check_call(['hdiutil',
+                           'convert',
+                           raw_dmg,
+                           '-quiet',
+                           '-format',
+                           'UDZO',
+                           '-imagekey',
+                           'zlib-level=9',
+                           '-o',
+                           final_dmg,
+                           ])
+    os.unlink(raw_dmg)
+
+
+def do_it(meson_command):
+    builddir = 'build-macos'
+    staging_dir = os.path.join(os.getcwd(), builddir, 'platypus.app')
+    build(meson_command, builddir, staging_dir)
+    create_dmg(builddir, staging_dir)
+    print('The app dmg can be found in the build dir.')
 
 if __name__ == '__main__':
     if len(sys.argv) == 1:
@@ -64,3 +101,6 @@ if __name__ == '__main__':
         sys.exit('This command takes at most one argument.')
     do_it(meson_exe)
 
+# Dmg template created with these instructions:
+#
+# https://el-tramo.be/blog/fancy-dmg/

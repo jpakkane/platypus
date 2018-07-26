@@ -3,6 +3,7 @@
 /msicreator
 /.flatpak-builder
 /build-release
+/build-macos
 .DS_Store
 .project
 .cproject
