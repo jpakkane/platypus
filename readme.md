@@ -34,3 +34,6 @@ creates a .msi installer that will be placed in the build directory.
 The macOS version is built by running the `build_macos.py` script from
 the source root. It creates a macOS application bundle installer that
 will be placed in the build directory.
+
+The Webassembly version can be built and started by running `ninja
+servewasm`. `emrun` will then print the server URL to stdout.
