@@ -1,6 +1,12 @@
 project('platypus', 'cpp',
   version : '0.1.0',
+  meson_version: '>=0.51.99',
   default_options : ['warning_level=3', 'cpp_std=c++14'])
+
+if host_machine.system() == 'wasm'
+  add_global_arguments('-s', 'EXPORT_ALL=1', language: 'cpp')
+  add_global_link_arguments('-s', 'EXPORT_ALL=1', language: 'cpp')
+endif
 
 subdir('src')
 
@@ -18,4 +24,8 @@ if host_machine.system() == 'windows'
   configure_file(input : 'windows/platypus.json.in',
     output : 'platypus.json',
     configuration : c)
+endif
+
+if host_machine.system() == 'wasm'
+  subdir('wasm')
 endif

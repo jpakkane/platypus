@@ -9,7 +9,7 @@ if cpp.get_id() != 'msvc'
   lib_args += ['-fvisibility=hidden']
 endif
 
-shlib = shared_library('platypus', 'platypus.cpp',
+shlib = library('platypus', 'platypus.cpp',
   install : true,
   cpp_args : lib_args,
 )
