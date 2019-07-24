@@ -26,6 +26,6 @@ if host_machine.system() == 'windows'
     configuration : c)
 endif
 
-if host_machine.system() == 'wasm'
+if host_machine.cpu_family().startswith('wasm')
   subdir('wasm')
 endif
