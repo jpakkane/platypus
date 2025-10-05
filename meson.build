@@ -1,7 +1,10 @@
 project('platypus', 'cpp',
   version : '0.1.0',
   meson_version: '>=0.51.99',
-  default_options : ['warning_level=3', 'cpp_std=c++14'])
+  default_options : ['warning_level=3',
+                     'cpp_std=c++20',
+                     'namingscheme=platform',
+                     ])
 
 if host_machine.system() == 'wasm'
   add_global_arguments('-s', 'EXPORT_ALL=1', language: 'cpp')

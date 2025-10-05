@@ -9,10 +9,17 @@ if cpp.get_id() != 'msvc'
   lib_args += ['-fvisibility=hidden']
 endif
 
-shlib = library('platypus', 'platypus.cpp',
+lib_sources = ['platypus.cpp']
+
+if host_machine.system() == 'android'
+  lib_sources += 'platypus_jni.cpp'
+endif
+
+shlib = library('platypus',
+  lib_sources,
   install : true,
   cpp_args : lib_args,
 )
 
-plat_dep = declare_dependency(include_directories : include_directories('.'),
+plat_dep = declare_dependency(include_directories : '.',
   link_with : shlib)

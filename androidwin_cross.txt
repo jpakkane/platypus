@@ -1,0 +1,12 @@
+[binaries]
+
+c = 'C:/Users/Jussi Pakkanen/AppData/Local/Android/Sdk/ndk/29.0.14033849/toolchains/llvm/prebuilt/windows-x86_64/bin/aarch64-linux-android35-clang.cmd'
+cpp = 'C:/Users/Jussi Pakkanen/AppData/Local/Android/Sdk/ndk/29.0.14033849/toolchains/llvm/prebuilt/windows-x86_64/bin/aarch64-linux-android35-clang++.cmd'
+ar = 'C:/Users/Jussi Pakkanen/AppData/Local/Android/Sdk/ndk/29.0.14033849/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-ar.exe'
+strip = 'c:/Users/Jussi Pakkanen/AppData/Local/Android/Sdk/ndk/29.0.14033849/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-strip.exe'
+
+[host_machine]
+system = 'android'
+cpu_family = 'aarch64'
+cpu = 'aarch64'
+endian = 'little'
