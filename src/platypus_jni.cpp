@@ -25,7 +25,7 @@
 #include <platypus.h>
 
 extern "C" JNIEXPORT jint JNICALL
-Java_io_github_jpakkane_platypus_MainActivity_platypus_hello(
+Java_io_github_jpakkane_platypus_MainActivity_platypus_1hello(
                                                              JNIEnv* /*env*/,
                                                              jobject /* this */) {
     return platypus_hello();
