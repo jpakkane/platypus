@@ -10,4 +10,5 @@
 .pydevproject
 .settings
 *.aps
-
+/app/src/main/jniLibs
+/android-cross
