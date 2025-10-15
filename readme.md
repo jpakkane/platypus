@@ -12,7 +12,7 @@ The goal is to create at least the following:
  - A GTK+ Unix app
  - A WIN32 application
  - An Objective C macOS app bundle
- - An Android application (not done yet)
+ - An Android application
  - A Swift iOS application (not done yet)
 
 In addition to the basic application also build installers for:
@@ -37,3 +37,7 @@ will be placed in the build directory.
 
 The Webassembly version can be built and started by running `ninja
 servewasm`. `emrun` will then print the server URL to stdout.
+
+The Android version can be built with the `build_android.py`
+script. It builds a shared lib and places it in the source tree so
+that Android Studio picks it up automatically.

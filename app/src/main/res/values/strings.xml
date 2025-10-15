@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Platypus</string>
+    <string name="buttonText">Press me</string>
+    <string name="got_value">Got value %1$d.</string>
+</resources>

@@ -12,3 +12,7 @@
 *.aps
 /app/src/main/jniLibs
 /android-cross
+.gradle
+.idea
+.kotlin
+local.properties
